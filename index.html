@@ -33,6 +33,10 @@ tr:hover { background: #f9fafb; }
 a { color: #2563eb; text-decoration: none; }
 a:hover { text-decoration: underline; }
 nav { margin-bottom: 1rem; font-size: 0.85rem; }
+th.sortable-th { cursor: pointer; user-select: none; position: relative; padding-right: 20px; }
+th.sortable-th::after { content: '↕'; position: absolute; right: 6px; color: #9ca3af; font-size: 0.75rem; opacity: 0.5; }
+th.sort-asc::after { content: '▲'; color: #2563eb; opacity: 1; }
+th.sort-desc::after { content: '▼'; color: #2563eb; opacity: 1; }
 
 @media (prefers-color-scheme: dark) {
   body { background: #111827; color: #e5e7eb; }
@@ -44,6 +48,7 @@ nav { margin-bottom: 1rem; font-size: 0.85rem; }
   tr:hover { background: #1f2937; }
   .footer { border-top-color: #374151; }
   a { color: #60a5fa; }
+  th.sort-asc::after, th.sort-desc::after { color: #60a5fa; }
 }
 
 ul { list-style: none; padding: 0; }

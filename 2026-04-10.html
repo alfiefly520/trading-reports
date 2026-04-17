@@ -33,6 +33,10 @@ tr:hover { background: #f9fafb; }
 a { color: #2563eb; text-decoration: none; }
 a:hover { text-decoration: underline; }
 nav { margin-bottom: 1rem; font-size: 0.85rem; }
+th.sortable-th { cursor: pointer; user-select: none; position: relative; padding-right: 20px; }
+th.sortable-th::after { content: '↕'; position: absolute; right: 6px; color: #9ca3af; font-size: 0.75rem; opacity: 0.5; }
+th.sort-asc::after { content: '▲'; color: #2563eb; opacity: 1; }
+th.sort-desc::after { content: '▼'; color: #2563eb; opacity: 1; }
 
 @media (prefers-color-scheme: dark) {
   body { background: #111827; color: #e5e7eb; }
@@ -44,6 +48,7 @@ nav { margin-bottom: 1rem; font-size: 0.85rem; }
   tr:hover { background: #1f2937; }
   .footer { border-top-color: #374151; }
   a { color: #60a5fa; }
+  th.sort-asc::after, th.sort-desc::after { color: #60a5fa; }
 }
 </style>
 </head>
@@ -67,8 +72,8 @@ nav { margin-bottom: 1rem; font-size: 0.85rem; }
 <div class="warn">⚠️ 出場日 2026-04-30 為工作日估算（超出 FinLab 資料範圍），可能因國定假日/颱風假偏差 1-2 天，請手動確認</div>
 </details>
 <h2>&#x1F7E2; 今日買進（開盤價進場）</h2>
-<div class="table-wrap"><table>
-<tr><th class="c">#</th><th class="c">代碼</th><th>商品</th><th class="c">策略增加</th><th class="r">買進金額</th><th class="r">估算股數</th><th class="r">參考價</th><th class="c">出場日</th></tr>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="number">策略增加</th><th class="r" data-type="number">買進金額</th><th class="r" data-type="number">估算股數</th><th class="r" data-type="number">參考價</th><th class="c" data-type="date">出場日</th></tr>
 <tr><td class="c">1</td><td class="c">2548</td><td>華固</td><td class="c">+6</td><td class="r">72 萬</td><td class="r">—</td><td class="r">開盤價</td><td class="c">2026-04-30 <span class="est">&#9888;&#xFE0F;預估</span></td></tr>
 <tr><td class="c">2</td><td class="c">8383</td><td>千附</td><td class="c">+4</td><td class="r">48 萬</td><td class="r">—</td><td class="r">開盤價</td><td class="c">2026-04-30 <span class="est">&#9888;&#xFE0F;預估</span></td></tr>
 <tr><td class="c">3</td><td class="c">1785</td><td>光洋科</td><td class="c">+3</td><td class="r">36 萬</td><td class="r">—</td><td class="r">開盤價</td><td class="c">2026-04-30 <span class="est">&#9888;&#xFE0F;預估</span></td></tr>
@@ -83,8 +88,8 @@ nav { margin-bottom: 1rem; font-size: 0.85rem; }
 </table></div>
 <div class="summary">&#x1F4B5; 今日買進合計：<b>312 萬</b></div>
 <h2>&#x1F7E1; 續抱未加碼 4 檔</h2>
-<div class="table-wrap"><table>
-<tr><th class="c">#</th><th class="c">代碼</th><th>商品</th><th class="c">維持策略數</th><th class="c">高點</th></tr>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="number">維持策略數</th><th class="c" data-type="number">高點</th></tr>
 <tr><td class="c">1</td><td class="c">3105</td><td>穩懋</td><td class="c">1</td><td class="c">4</td></tr>
 <tr><td class="c">2</td><td class="c">2327</td><td>國巨</td><td class="c">1</td><td class="c">1</td></tr>
 <tr><td class="c">3</td><td class="c">2382</td><td>廣達</td><td class="c">1</td><td class="c">1</td></tr>
@@ -94,8 +99,8 @@ nav { margin-bottom: 1rem; font-size: 0.85rem; }
 <p class="empty">（無）</p>
 <h2>&#x1F4B0; 當前部位總覽</h2>
 <div class="summary">持有中：21 支股票，21 個批次，總金額 0 萬</div>
-<div class="table-wrap"><table>
-<tr><th class="c">#</th><th class="c">代碼</th><th>商品</th><th class="c">進場日</th><th class="r">金額</th><th class="c">出場日</th><th class="r">最新收盤</th><th class="r">浮動損益</th><th class="r">報酬率</th></tr>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="date">進場日</th><th class="r" data-type="number">金額</th><th class="c" data-type="date">出場日</th><th class="r" data-type="number">最新收盤</th><th class="r" data-type="number">浮動損益</th><th class="r" data-type="number">報酬率</th></tr>
 <tr><td class="c">1</td><td class="c">3081</td><td>聯亞</td><td class="c">2026-04-07</td><td class="r">24 萬</td><td class="c">2026-04-27 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">—</td><td class="r pnl-na">—</td><td class="r pnl-na">—</td></tr>
 <tr><td class="c">2</td><td class="c">3105</td><td>穩懋</td><td class="c">2026-04-08</td><td class="r">48 萬</td><td class="c">2026-04-28 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">—</td><td class="r pnl-na">—</td><td class="r pnl-na">—</td></tr>
 <tr><td class="c">3</td><td class="c">3669</td><td>圓展</td><td class="c">2026-04-08</td><td class="r">12 萬</td><td class="c">2026-04-28 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">—</td><td class="r pnl-na">—</td><td class="r pnl-na">—</td></tr>
@@ -120,6 +125,53 @@ nav { margin-bottom: 1rem; font-size: 0.85rem; }
 </table></div>
 <h2>&#x1F4CA; 累計已實現損益（含手續費 0.1425% + 交易稅 0.3%）</h2>
 <p class="empty">（尚無已平倉紀錄）</p>
-<div class="footer">由交易規畫引擎 v21 自動產生 &middot; 2026-04-13 05:38</div>
+<div class="footer">由交易規畫引擎 v21 自動產生 &middot; 2026-04-18 04:25</div>
+<script>
+(function() {
+  document.querySelectorAll('table.sortable').forEach(function(table) {
+    var rows = Array.from(table.rows);
+    if (rows.length < 2) return;
+    var headers = Array.from(rows[0].cells);
+    var dataRows = rows.slice(1);
+    var original = dataRows.slice();
+    var state = { col: -1, dir: 0 };
+    headers.forEach(function(th, idx) {
+      if (th.dataset.type === 'none') return;
+      th.classList.add('sortable-th');
+      th.addEventListener('click', function() {
+        if (state.col !== idx) { state = { col: idx, dir: 1 }; }
+        else { state.dir = (state.dir + 1) % 3; }
+        headers.forEach(function(h) { h.classList.remove('sort-asc', 'sort-desc'); });
+        var parent = dataRows[0].parentNode;
+        if (state.dir === 0) {
+          original.forEach(function(row) { parent.appendChild(row); });
+          return;
+        }
+        th.classList.add(state.dir === 1 ? 'sort-asc' : 'sort-desc');
+        var type = th.dataset.type || 'text';
+        var sorted = dataRows.slice().sort(function(a, b) {
+          var av = (a.cells[idx] ? a.cells[idx].textContent.trim() : '');
+          var bv = (b.cells[idx] ? b.cells[idx].textContent.trim() : '');
+          var aNull = (av === '—' || av === '');
+          var bNull = (bv === '—' || bv === '');
+          if (aNull && bNull) return 0;
+          if (aNull) return 1;
+          if (bNull) return -1;
+          var cmp;
+          if (type === 'number') {
+            var an = parseFloat(av.replace(/[,+%元萬股\s]/g, '')) || 0;
+            var bn = parseFloat(bv.replace(/[,+%元萬股\s]/g, '')) || 0;
+            cmp = an - bn;
+          } else {
+            cmp = av.localeCompare(bv);
+          }
+          return state.dir === 1 ? cmp : -cmp;
+        });
+        sorted.forEach(function(row) { parent.appendChild(row); });
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
