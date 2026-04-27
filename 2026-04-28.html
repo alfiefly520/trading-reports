@@ -29,6 +29,14 @@ tr:hover { background: #f9fafb; }
 .est { color: #d97706; font-size: 0.8rem; }
 .empty { color: #9ca3af; font-style: italic; padding: 12px 0; }
 .warn-toggle { color: #92400e; font-size: 0.85rem; cursor: pointer; padding: 6px 0; }
+.realized-details { margin: 8px 0; }
+.realized-details > summary { cursor: pointer; padding: 8px 12px; background: #f3f4f6; border-radius: 6px; font-size: 0.9rem; user-select: none; }
+.realized-details > summary:hover { background: #e5e7eb; }
+.realized-details[open] > summary { margin-bottom: 8px; }
+.realized-scroll { max-height: 500px; overflow-y: auto; }
+.tag-win { background: #dcfce7; color: #15803d; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+.tag-loss { background: #fee2e2; color: #b91c1c; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+.tag-no-price { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
 .footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; color: #9ca3af; font-size: 0.75rem; text-align: center; }
 a { color: #2563eb; text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -49,6 +57,11 @@ th.sort-desc::after { content: '▼'; color: #2563eb; opacity: 1; }
   .footer { border-top-color: #374151; }
   a { color: #60a5fa; }
   th.sort-asc::after, th.sort-desc::after { color: #60a5fa; }
+  .realized-details > summary { background: #1f2937; }
+  .realized-details > summary:hover { background: #374151; }
+  .tag-win { background: #14532d; color: #86efac; }
+  .tag-loss { background: #7f1d1d; color: #fca5a5; }
+  .tag-no-price { background: #78350f; color: #fde68a; }
 }
 </style>
 </head>
@@ -220,7 +233,18 @@ th.sort-desc::after { content: '▼'; color: #2563eb; opacity: 1; }
 <h2>&#x1F4CA; 累計已實現損益（含手續費 0.1425% + 交易稅 0.3%）</h2>
 <div class="summary">已平倉 3 筆 &nbsp; 勝 1 / 負 0 &nbsp; 勝率 100.0% &nbsp; 累計 <span class="pnl-pos">+73,284 元</span></div>
 <div class="warn">&#9888;&#xFE0F; 有 2 筆已平倉批次因缺價格未計入勝率統計</div>
-<div class="footer">由交易規畫引擎 v21 自動產生 &middot; 2026-04-28 01:29</div>
+<details class="realized-details">
+<summary>展開 3 筆完整明細</summary>
+<div class="realized-scroll table-wrap">
+<table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="date">進場</th><th class="c" data-type="date">出場</th><th class="r" data-type="number">金額</th><th class="r" data-type="number">PnL</th><th class="c">結果</th></tr>
+<tr><td class="c">1</td><td class="c">3081</td><td>聯亞</td><td class="c">2026-04-07</td><td class="c">2026-04-27</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">+73,284 元</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">2</td><td class="c">3105</td><td>穩懋</td><td class="c">2026-04-08</td><td class="c">2026-04-28</td><td class="r">48 萬</td><td class="r"><span class="pnl-na">—</span></td><td class="c"><span class="tag-no-price">⚠ 缺價</span></td></tr>
+<tr><td class="c">3</td><td class="c">3669</td><td>圓展</td><td class="c">2026-04-08</td><td class="c">2026-04-28</td><td class="r">12 萬</td><td class="r"><span class="pnl-na">—</span></td><td class="c"><span class="tag-no-price">⚠ 缺價</span></td></tr>
+</table>
+</div>
+</details>
+<div class="footer">由交易規畫引擎 v21 自動產生 &middot; 2026-04-28 01:43</div>
 <script>
 (function() {
   document.querySelectorAll('table.sortable').forEach(function(table) {
