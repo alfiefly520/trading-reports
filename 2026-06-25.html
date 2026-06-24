@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-06-25 交易規畫</title>
+<style>* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6; color: #1f2937; background: #f9fafb;
+  max-width: 800px; margin: 0 auto; padding: 16px;
+}
+h1 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+h2 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 4px; }
+.meta { color: #6b7280; font-size: 0.85rem; margin-bottom: 1rem; }
+.warn { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 8px 12px; margin: 8px 0; border-radius: 4px; font-size: 0.9rem; }
+.summary { background: #f3f4f6; padding: 10px 14px; border-radius: 6px; margin: 8px 0; font-size: 0.9rem; }
+.table-wrap { overflow-x: auto; margin: 8px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; white-space: nowrap; }
+th { background: #f3f4f6; font-weight: 600; text-align: left; padding: 6px 10px; border-bottom: 2px solid #d1d5db; }
+td { padding: 6px 10px; border-bottom: 1px solid #e5e7eb; }
+tr:hover { background: #f9fafb; }
+.r { text-align: right; }
+.c { text-align: center; }
+.pnl-pos { color: #dc2626; font-weight: 600; }
+.pnl-neg { color: #16a34a; font-weight: 600; }
+.pnl-na { color: #9ca3af; }
+.est { color: #d97706; font-size: 0.8rem; }
+.empty { color: #9ca3af; font-style: italic; padding: 12px 0; }
+.warn-toggle { color: #92400e; font-size: 0.85rem; cursor: pointer; padding: 6px 0; }
+.realized-details { margin: 8px 0; }
+.realized-details > summary { cursor: pointer; padding: 8px 12px; background: #f3f4f6; border-radius: 6px; font-size: 0.9rem; user-select: none; }
+.realized-details > summary:hover { background: #e5e7eb; }
+.realized-details[open] > summary { margin-bottom: 8px; }
+.realized-scroll { max-height: 500px; overflow-y: auto; }
+.tag-win { background: #dcfce7; color: #15803d; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+.tag-loss { background: #fee2e2; color: #b91c1c; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+.tag-no-price { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+.footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; color: #9ca3af; font-size: 0.75rem; text-align: center; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+nav { margin-bottom: 1rem; font-size: 0.85rem; }
+th.sortable-th { cursor: pointer; user-select: none; position: relative; padding-right: 20px; }
+th.sortable-th::after { content: '↕'; position: absolute; right: 6px; color: #9ca3af; font-size: 0.75rem; opacity: 0.5; }
+th.sort-asc::after { content: '▲'; color: #2563eb; opacity: 1; }
+th.sort-desc::after { content: '▼'; color: #2563eb; opacity: 1; }
+
+@media (prefers-color-scheme: dark) {
+  body { background: #111827; color: #e5e7eb; }
+  h2 { border-bottom-color: #374151; }
+  .warn { background: #78350f; border-left-color: #fbbf24; color: #fef3c7; }
+  .summary { background: #1f2937; }
+  th { background: #1f2937; border-bottom-color: #4b5563; }
+  td { border-bottom-color: #374151; }
+  tr:hover { background: #1f2937; }
+  .footer { border-top-color: #374151; }
+  a { color: #60a5fa; }
+  th.sort-asc::after, th.sort-desc::after { color: #60a5fa; }
+  .realized-details > summary { background: #1f2937; }
+  .realized-details > summary:hover { background: #374151; }
+  .tag-win { background: #14532d; color: #86efac; }
+  .tag-loss { background: #7f1d1d; color: #fca5a5; }
+  .tag-no-price { background: #78350f; color: #fde68a; }
+}
+</style>
+</head>
+<body>
+<nav><a href="index.html">&larr; 回日期列表</a></nav>
+<h1>&#x1F4C5; 2026-06-25 交易規畫（引擎 v26）</h1>
+<p class="meta">訊號日期 2026-06-25，收盤價基準日 2026-06-24</p>
+<div class="warn">⚠️ 出場日 2026-07-15 含未來日估算（超出 FinLab 資料範圍），待 FinLab 涵蓋後可重新對齊精確日</div>
+<h2>&#x1F7E2; 今日買進（開盤價進場）</h2>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="number">策略增加</th><th class="r" data-type="number">買進金額</th><th class="r" data-type="number">估算股數</th><th class="r" data-type="number">參考價</th><th class="c" data-type="date">出場日</th></tr>
+<tr><td class="c">1</td><td class="c">2408</td><td>南亞科</td><td class="c">+1</td><td class="r">20 萬</td><td class="r">≈ 451 股</td><td class="r">最新收盤 443.50</td><td class="c">2026-07-15 <span class="est">&#9888;&#xFE0F;預估</span></td></tr>
+</table></div>
+<div class="summary">&#x1F4B5; 今日買進合計：<b>20 萬</b></div>
+<h2>&#x1F7E1; 續抱未加碼 4 檔</h2>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="number">維持策略數</th><th class="c" data-type="number">高點</th></tr>
+<tr><td class="c">1</td><td class="c">2030</td><td>彰源</td><td class="c">1</td><td class="c">12</td></tr>
+<tr><td class="c">2</td><td class="c">6613</td><td>朋億*</td><td class="c">1</td><td class="c">1</td></tr>
+<tr><td class="c">3</td><td class="c">6241</td><td>鑫永洋</td><td class="c">1</td><td class="c">2</td></tr>
+<tr><td class="c">4</td><td class="c">2618</td><td>長榮航</td><td class="c">2</td><td class="c">2</td></tr>
+</table></div>
+<h2>&#x1F534; 今日賣出（收盤前平倉）</h2>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="date">進場日</th><th class="r" data-type="number">金額</th><th class="r" data-type="number">估算股數</th><th class="r" data-type="number">收盤價</th><th class="r" data-type="number">損益</th><th>備註</th></tr>
+<tr><td class="c">1</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-06-04</td><td class="r">80 萬</td><td class="r">≈ 2,023 股</td><td class="r">—</td><td class="r pnl-na">—</td><td></td></tr>
+</table></div>
+<div class="summary">&#x1F4B5; 今日賣出合計：<b>80 萬</b></div>
+<h2>&#x1F4B0; 當前部位總覽</h2>
+<div class="summary">持有中：21 支股票，27 個批次，總金額 1900 萬</div>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="date">進場日</th><th class="r" data-type="number">金額</th><th class="c" data-type="date">出場日</th><th class="r" data-type="number">最新收盤</th><th class="r" data-type="number">浮動損益</th><th class="r" data-type="number">報酬率</th></tr>
+<tr><td class="c">1</td><td class="c">5351</td><td>鈺創</td><td class="c">2026-06-05</td><td class="r">16 萬</td><td class="c">2026-06-26 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">91.90</td><td class="r pnl-pos">+700 元</td><td class="r pnl-pos">+0.4%</td></tr>
+<tr><td class="c">2</td><td class="c">5351</td><td>鈺創</td><td class="c">2026-06-08</td><td class="r">224 萬</td><td class="c">2026-06-29 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">91.90</td><td class="r pnl-pos">+412,784 元</td><td class="r pnl-pos">+18.4%</td></tr>
+<tr><td class="c">3</td><td class="c">2025</td><td>千興</td><td class="c">2026-06-08</td><td class="r">128 萬</td><td class="c">2026-06-29 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">13.75</td><td class="r pnl-neg">-31,773 元</td><td class="r pnl-neg">-2.5%</td></tr>
+<tr><td class="c">4</td><td class="c">1714</td><td>和桐</td><td class="c">2026-06-08</td><td class="r">32 萬</td><td class="c">2026-06-29 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">19.05</td><td class="r pnl-pos">+161,894 元</td><td class="r pnl-pos">+50.6%</td></tr>
+<tr><td class="c">5</td><td class="c">2025</td><td>千興</td><td class="c">2026-06-09</td><td class="r">40 萬</td><td class="c">2026-06-30 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">13.75</td><td class="r pnl-neg">-7,143 元</td><td class="r pnl-neg">-1.8%</td></tr>
+<tr><td class="c">6</td><td class="c">2025</td><td>千興</td><td class="c">2026-06-10</td><td class="r">120 萬</td><td class="c">2026-07-01 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">13.75</td><td class="r pnl-neg">-92,618 元</td><td class="r pnl-neg">-7.7%</td></tr>
+<tr><td class="c">7</td><td class="c">2030</td><td>彰源</td><td class="c">2026-06-10</td><td class="r">240 萬</td><td class="c">2026-07-01 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">19.30</td><td class="r pnl-pos">+50,794 元</td><td class="r pnl-pos">+2.1%</td></tr>
+<tr><td class="c">8</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-06-10</td><td class="r">200 萬</td><td class="c">2026-07-01 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">1795.00</td><td class="r pnl-neg">-159,030 元</td><td class="r pnl-neg">-7.9%</td></tr>
+<tr><td class="c">9</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-06-11</td><td class="r">20 萬</td><td class="c">2026-07-02 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">1795.00</td><td class="r pnl-pos">+1,680 元</td><td class="r pnl-pos">+0.8%</td></tr>
+<tr><td class="c">10</td><td class="c">8926</td><td>台汽電</td><td class="c">2026-06-11</td><td class="r">140 萬</td><td class="c">2026-07-02 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">81.90</td><td class="r pnl-pos">+89,092 元</td><td class="r pnl-pos">+6.4%</td></tr>
+<tr><td class="c">11</td><td class="c">3285</td><td>微端</td><td class="c">2026-06-11</td><td class="r">80 萬</td><td class="c">2026-07-02 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">44.20</td><td class="r pnl-pos">+139,174 元</td><td class="r pnl-pos">+17.4%</td></tr>
+<tr><td class="c">12</td><td class="c">3147</td><td>大綜</td><td class="c">2026-06-11</td><td class="r">40 萬</td><td class="c">2026-07-02 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">340.00</td><td class="r pnl-neg">-13,632 元</td><td class="r pnl-neg">-3.4%</td></tr>
+<tr><td class="c">13</td><td class="c">4973</td><td>廣穎</td><td class="c">2026-06-11</td><td class="r">20 萬</td><td class="c">2026-07-02 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">185.00</td><td class="r pnl-neg">-6,786 元</td><td class="r pnl-neg">-3.4%</td></tr>
+<tr><td class="c">14</td><td class="c">6613</td><td>朋億*</td><td class="c">2026-06-12</td><td class="r">20 萬</td><td class="c">2026-07-03 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">359.00</td><td class="r pnl-pos">+27,940 元</td><td class="r pnl-pos">+14.0%</td></tr>
+<tr><td class="c">15</td><td class="c">4807</td><td>日成-KY</td><td class="c">2026-06-15</td><td class="r">20 萬</td><td class="c">2026-07-06 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">42.95</td><td class="r pnl-pos">+6,988 元</td><td class="r pnl-pos">+3.5%</td></tr>
+<tr><td class="c">16</td><td class="c">8937</td><td>合騏*</td><td class="c">2026-06-15</td><td class="r">20 萬</td><td class="c">2026-07-06 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">29.20</td><td class="r pnl-pos">+31,288 元</td><td class="r pnl-pos">+15.6%</td></tr>
+<tr><td class="c">17</td><td class="c">1817</td><td>凱撒衛</td><td class="c">2026-06-16</td><td class="r">20 萬</td><td class="c">2026-07-07 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">40.35</td><td class="r pnl-pos">+1,750 元</td><td class="r pnl-pos">+0.9%</td></tr>
+<tr><td class="c">18</td><td class="c">6241</td><td>鑫永洋</td><td class="c">2026-06-16</td><td class="r">20 萬</td><td class="c">2026-07-07 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">15.10</td><td class="r pnl-pos">+1,333 元</td><td class="r pnl-pos">+0.7%</td></tr>
+<tr><td class="c">19</td><td class="c">6241</td><td>鑫永洋</td><td class="c">2026-06-17</td><td class="r">20 萬</td><td class="c">2026-07-08 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">15.10</td><td class="r pnl-pos">+19,636 元</td><td class="r pnl-pos">+9.8%</td></tr>
+<tr><td class="c">20</td><td class="c">2344</td><td>華邦電</td><td class="c">2026-06-17</td><td class="r">40 萬</td><td class="c">2026-07-08 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">205.00</td><td class="r pnl-pos">+20,510 元</td><td class="r pnl-pos">+5.1%</td></tr>
+<tr><td class="c">21</td><td class="c">2618</td><td>長榮航</td><td class="c">2026-06-18</td><td class="r">40 萬</td><td class="c">2026-07-09 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">44.00</td><td class="r pnl-pos">+6,467 元</td><td class="r pnl-pos">+1.6%</td></tr>
+<tr><td class="c">22</td><td class="c">9933</td><td>中鼎</td><td class="c">2026-06-18</td><td class="r">20 萬</td><td class="c">2026-07-09 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">42.90</td><td class="r pnl-neg">-1,389 元</td><td class="r pnl-neg">-0.7%</td></tr>
+<tr><td class="c">23</td><td class="c">5351</td><td>鈺創</td><td class="c">2026-06-23</td><td class="r">180 萬</td><td class="c">2026-07-13 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">91.90</td><td class="r pnl-neg">-144,144 元</td><td class="r pnl-neg">-8.0%</td></tr>
+<tr><td class="c">24</td><td class="c">3260</td><td>威剛</td><td class="c">2026-06-23</td><td class="r">80 萬</td><td class="c">2026-07-13 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">408.50</td><td class="r pnl-neg">-50,462 元</td><td class="r pnl-neg">-6.3%</td></tr>
+<tr><td class="c">25</td><td class="c">6770</td><td>力積電</td><td class="c">2026-06-23</td><td class="r">80 萬</td><td class="c">2026-07-13 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">85.70</td><td class="r pnl-pos">+28,020 元</td><td class="r pnl-pos">+3.5%</td></tr>
+<tr><td class="c">26</td><td class="c">6806</td><td>森崴能源</td><td class="c">2026-06-23</td><td class="r">20 萬</td><td class="c">2026-07-13 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">3.510</td><td class="r pnl-na">—</td><td class="r pnl-na">—</td></tr>
+<tr><td class="c">27</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-06-25</td><td class="r">20 萬</td><td class="c">2026-07-15 <span class="est">&#9888;&#xFE0F;預估</span></td><td class="r">443.50</td><td class="r pnl-na">—</td><td class="r pnl-na">—</td></tr>
+</table></div>
+<div class="summary pnl-pos">&#x1F4B9; 浮動損益合計：<b>+493,073 元</b>（整體報酬率 +2.7%，概念金額基準 1900 萬，資料截止：2026-06-24）</div>
+<h2>&#x1F4C9; 持倉中但今日未出現訊號</h2>
+<div class="table-wrap"><table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="number">批次</th><th class="r" data-type="number">金額</th></tr>
+<tr><td class="c">1</td><td class="c">5351</td><td>鈺創</td><td class="c">3</td><td class="r">420 萬</td></tr>
+<tr><td class="c">2</td><td class="c">2025</td><td>千興</td><td class="c">3</td><td class="r">288 萬</td></tr>
+<tr><td class="c">3</td><td class="c">1714</td><td>和桐</td><td class="c">1</td><td class="r">32 萬</td></tr>
+<tr><td class="c">4</td><td class="c">5289</td><td>宜鼎</td><td class="c">2</td><td class="r">220 萬</td></tr>
+<tr><td class="c">5</td><td class="c">8926</td><td>台汽電</td><td class="c">1</td><td class="r">140 萬</td></tr>
+<tr><td class="c">6</td><td class="c">3285</td><td>微端</td><td class="c">1</td><td class="r">80 萬</td></tr>
+<tr><td class="c">7</td><td class="c">3147</td><td>大綜</td><td class="c">1</td><td class="r">40 萬</td></tr>
+<tr><td class="c">8</td><td class="c">4973</td><td>廣穎</td><td class="c">1</td><td class="r">20 萬</td></tr>
+<tr><td class="c">9</td><td class="c">4807</td><td>日成-KY</td><td class="c">1</td><td class="r">20 萬</td></tr>
+<tr><td class="c">10</td><td class="c">8937</td><td>合騏*</td><td class="c">1</td><td class="r">20 萬</td></tr>
+<tr><td class="c">11</td><td class="c">1817</td><td>凱撒衛</td><td class="c">1</td><td class="r">20 萬</td></tr>
+<tr><td class="c">12</td><td class="c">2344</td><td>華邦電</td><td class="c">1</td><td class="r">40 萬</td></tr>
+<tr><td class="c">13</td><td class="c">9933</td><td>中鼎</td><td class="c">1</td><td class="r">20 萬</td></tr>
+<tr><td class="c">14</td><td class="c">3260</td><td>威剛</td><td class="c">1</td><td class="r">80 萬</td></tr>
+<tr><td class="c">15</td><td class="c">6770</td><td>力積電</td><td class="c">1</td><td class="r">80 萬</td></tr>
+<tr><td class="c">16</td><td class="c">6806</td><td>森崴能源</td><td class="c">1</td><td class="r">20 萬</td></tr>
+</table></div>
+<h2>&#x1F4CA; 累計已實現損益（含手續費 0.1425% + 交易稅 0.3%）</h2>
+<div class="summary">已平倉 217 筆 &nbsp; 勝 147 / 負 68 &nbsp; 勝率 68.4% &nbsp; 累計 <span class="pnl-pos">+8,401,170 元</span>  （含歷史裁剪 +879,473 元）</div>
+<div class="warn">&#9888;&#xFE0F; 有 2 筆已平倉批次因缺價格未計入勝率統計</div>
+<details class="realized-details">
+<summary>展開 200 筆完整明細</summary>
+<div class="realized-scroll table-wrap">
+<table class="sortable">
+<tr><th class="c" data-type="none">#</th><th class="c">代碼</th><th>商品</th><th class="c" data-type="date">進場</th><th class="c" data-type="date">出場</th><th class="r" data-type="number">金額</th><th class="r" data-type="number">PnL（元）</th><th class="c">結果</th></tr>
+<tr><td class="c">1</td><td class="c">3209</td><td>全科</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">42884</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">2</td><td class="c">2305</td><td>全友</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-20410</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">3</td><td class="c">2527</td><td>宏璟</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-4518</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">4</td><td class="c">6548</td><td>長科*</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-9</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">5</td><td class="c">8383</td><td>千附</td><td class="c">2026-04-10</td><td class="c">2026-04-30</td><td class="r">48 萬</td><td class="r"><span class="pnl-pos">127791</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">6</td><td class="c">8383</td><td>千附</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">24317</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">7</td><td class="c">6506</td><td>雙邦</td><td class="c">2026-04-10</td><td class="c">2026-04-30</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">6442</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">8</td><td class="c">6506</td><td>雙邦</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">6054</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">9</td><td class="c">6419</td><td>京晨科</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">104645</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">10</td><td class="c">1568</td><td>倉佑</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">19921</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">11</td><td class="c">1709</td><td>和益</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-5058</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">12</td><td class="c">2501</td><td>國建</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-9323</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">13</td><td class="c">3048</td><td>益登</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-2917</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">14</td><td class="c">6414</td><td>樺漢</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">21967</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">15</td><td class="c">5871</td><td>中租-KY</td><td class="c">2026-04-15</td><td class="c">2026-05-06</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">1929</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">16</td><td class="c">5228</td><td>鈺鎧</td><td class="c">2026-04-10</td><td class="c">2026-04-30</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">26735</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">17</td><td class="c">5228</td><td>鈺鎧</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">32111</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">18</td><td class="c">5228</td><td>鈺鎧</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">36 萬</td><td class="r"><span class="pnl-pos">42694</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">19</td><td class="c">5228</td><td>鈺鎧</td><td class="c">2026-04-16</td><td class="c">2026-05-07</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">16394</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">20</td><td class="c">3016</td><td>嘉晶</td><td class="c">2026-04-16</td><td class="c">2026-05-07</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">105984</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">21</td><td class="c">4440</td><td>宜新實業</td><td class="c">2026-04-16</td><td class="c">2026-05-07</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-3018</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">22</td><td class="c">6101</td><td>寬魚國際</td><td class="c">2026-04-16</td><td class="c">2026-05-07</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-3056</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">23</td><td class="c">2637</td><td>慧洋-KY</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">4588</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">24</td><td class="c">2637</td><td>慧洋-KY</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">36 萬</td><td class="r"><span class="pnl-pos">13037</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">25</td><td class="c">2637</td><td>慧洋-KY</td><td class="c">2026-04-17</td><td class="c">2026-05-08</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-1339</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">26</td><td class="c">8043</td><td>蜜望實</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">6076</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">27</td><td class="c">8043</td><td>蜜望實</td><td class="c">2026-04-17</td><td class="c">2026-05-08</td><td class="r">24 萬</td><td class="r"><span class="pnl-neg">-15192</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">28</td><td class="c">4543</td><td>萬在</td><td class="c">2026-04-17</td><td class="c">2026-05-08</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">23763</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">29</td><td class="c">5483</td><td>中美晶</td><td class="c">2026-04-17</td><td class="c">2026-05-08</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">21097</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">30</td><td class="c">8016</td><td>矽創</td><td class="c">2026-04-10</td><td class="c">2026-04-30</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">15185</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">31</td><td class="c">8016</td><td>矽創</td><td class="c">2026-04-20</td><td class="c">2026-05-11</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">27325</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">32</td><td class="c">3095</td><td>及成</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">32825</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">33</td><td class="c">3095</td><td>及成</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">26757</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">34</td><td class="c">3095</td><td>及成</td><td class="c">2026-04-20</td><td class="c">2026-05-11</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">81925</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">35</td><td class="c">2248</td><td>華勝-KY</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">5215</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">36</td><td class="c">2248</td><td>華勝-KY</td><td class="c">2026-04-20</td><td class="c">2026-05-11</td><td class="r">36 萬</td><td class="r"><span class="pnl-pos">20296</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">37</td><td class="c">3555</td><td>博士旺</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">19861</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">38</td><td class="c">3555</td><td>博士旺</td><td class="c">2026-04-20</td><td class="c">2026-05-11</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-21899</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">39</td><td class="c">4967</td><td>十銓</td><td class="c">2026-04-09</td><td class="c">2026-04-29</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">31402</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">40</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-04-10</td><td class="c">2026-04-30</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">4827</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">41</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-04-16</td><td class="c">2026-05-07</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">47233</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">42</td><td class="c">3577</td><td>泓格</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">48 萬</td><td class="r"><span class="pnl-pos">39305</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">43</td><td class="c">8112</td><td>至上</td><td class="c">2026-04-13</td><td class="c">2026-05-04</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">53</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">44</td><td class="c">8112</td><td>至上</td><td class="c">2026-04-20</td><td class="c">2026-05-11</td><td class="r">60 萬</td><td class="r"><span class="pnl-neg">-11655</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">45</td><td class="c">4973</td><td>廣穎</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">132 萬</td><td class="r"><span class="pnl-pos">51799</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">46</td><td class="c">6265</td><td>方土昶</td><td class="c">2026-04-14</td><td class="c">2026-05-05</td><td class="r">48 萬</td><td class="r"><span class="pnl-pos">19646</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">47</td><td class="c">2451</td><td>創見</td><td class="c">2026-04-15</td><td class="c">2026-05-06</td><td class="r">36 萬</td><td class="r"><span class="pnl-pos">61357</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">48</td><td class="c">8271</td><td>宇瞻</td><td class="c">2026-04-20</td><td class="c">2026-05-11</td><td class="r">132 萬</td><td class="r"><span class="pnl-pos">385887</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">49</td><td class="c">8271</td><td>宇瞻</td><td class="c">2026-04-21</td><td class="c">2026-05-12</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">34478</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">50</td><td class="c">1341</td><td>富林-KY</td><td class="c">2026-04-21</td><td class="c">2026-05-12</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-2633</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">51</td><td class="c">1776</td><td>展宇</td><td class="c">2026-04-21</td><td class="c">2026-05-12</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-4810</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">52</td><td class="c">4967</td><td>十銓</td><td class="c">2026-04-22</td><td class="c">2026-05-13</td><td class="r">36 萬</td><td class="r"><span class="pnl-pos">54583</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">53</td><td class="c">2451</td><td>創見</td><td class="c">2026-04-22</td><td class="c">2026-05-13</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">26973</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">54</td><td class="c">8271</td><td>宇瞻</td><td class="c">2026-04-22</td><td class="c">2026-05-13</td><td class="r">108 萬</td><td class="r"><span class="pnl-pos">88003</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">55</td><td class="c">2417</td><td>圓剛</td><td class="c">2026-04-22</td><td class="c">2026-05-13</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">17893</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">56</td><td class="c">3260</td><td>威剛</td><td class="c">2026-04-22</td><td class="c">2026-05-13</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">8495</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">57</td><td class="c">8937</td><td>合騏*</td><td class="c">2026-04-22</td><td class="c">2026-05-13</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-25934</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">58</td><td class="c">3577</td><td>泓格</td><td class="c">2026-04-23</td><td class="c">2026-05-14</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">34284</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">59</td><td class="c">8112</td><td>至上</td><td class="c">2026-04-23</td><td class="c">2026-05-14</td><td class="r">24 萬</td><td class="r"><span class="pnl-neg">-14755</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">60</td><td class="c">4973</td><td>廣穎</td><td class="c">2026-04-23</td><td class="c">2026-05-14</td><td class="r">48 萬</td><td class="r"><span class="pnl-pos">123802</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">61</td><td class="c">3260</td><td>威剛</td><td class="c">2026-04-23</td><td class="c">2026-05-14</td><td class="r">48 萬</td><td class="r"><span class="pnl-neg">-2808</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">62</td><td class="c">4967</td><td>十銓</td><td class="c">2026-04-24</td><td class="c">2026-05-15</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">10411</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">63</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-04-24</td><td class="c">2026-05-15</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">136659</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">64</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-04-24</td><td class="c">2026-05-15</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">354168</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">65</td><td class="c">8299</td><td>群聯</td><td class="c">2026-04-24</td><td class="c">2026-05-15</td><td class="r">24 萬</td><td class="r"><span class="pnl-pos">128215</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">66</td><td class="c">2542</td><td>興富發</td><td class="c">2026-04-27</td><td class="c">2026-05-18</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">15928</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">67</td><td class="c">4967</td><td>十銓</td><td class="c">2026-04-28</td><td class="c">2026-05-19</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-14819</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">68</td><td class="c">4967</td><td>十銓</td><td class="c">2026-04-29</td><td class="c">2026-05-20</td><td class="r">24 萬</td><td class="r"><span class="pnl-neg">-15198</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">69</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-04-29</td><td class="c">2026-05-20</td><td class="r">72 萬</td><td class="r"><span class="pnl-pos">157715</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">70</td><td class="c">3054</td><td>立萬利</td><td class="c">2026-04-29</td><td class="c">2026-05-20</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-5025</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">71</td><td class="c">6265</td><td>方土昶</td><td class="c">2026-04-30</td><td class="c">2026-05-21</td><td class="r">48 萬</td><td class="r"><span class="pnl-neg">-62</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">72</td><td class="c">2417</td><td>圓剛</td><td class="c">2026-05-04</td><td class="c">2026-05-22</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-2778</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">73</td><td class="c">2337</td><td>旺宏</td><td class="c">2026-05-04</td><td class="c">2026-05-22</td><td class="r">12 萬</td><td class="r"><span class="pnl-neg">-9231</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">74</td><td class="c">4807</td><td>日成-KY</td><td class="c">2026-05-04</td><td class="c">2026-05-22</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">10703</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">75</td><td class="c">2451</td><td>創見</td><td class="c">2026-05-06</td><td class="c">2026-05-26</td><td class="r">180 萬</td><td class="r"><span class="pnl-pos">63155</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">76</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-05-06</td><td class="c">2026-05-26</td><td class="r">36 萬</td><td class="r"><span class="pnl-pos">25227</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">77</td><td class="c">3260</td><td>威剛</td><td class="c">2026-05-07</td><td class="c">2026-05-27</td><td class="r">48 萬</td><td class="r"><span class="pnl-neg">-68713</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">78</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-05-07</td><td class="c">2026-05-27</td><td class="r">120 萬</td><td class="r"><span class="pnl-pos">202791</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">79</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-05-07</td><td class="c">2026-05-27</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">7053</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">80</td><td class="c">2347</td><td>聯強</td><td class="c">2026-05-07</td><td class="c">2026-05-27</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">1855</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">81</td><td class="c">5864</td><td>致和證</td><td class="c">2026-05-07</td><td class="c">2026-05-27</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">14473</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">82</td><td class="c">7709</td><td>榮田</td><td class="c">2026-05-07</td><td class="c">2026-05-27</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">10862</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">83</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-05-08</td><td class="c">2026-05-28</td><td class="r">12 萬</td><td class="r"><span class="pnl-pos">27279</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">84</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-05-08</td><td class="c">2026-05-28</td><td class="r">36 萬</td><td class="r"><span class="pnl-pos">51290</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">85</td><td class="c">6015</td><td>宏遠證</td><td class="c">2026-05-08</td><td class="c">2026-05-28</td><td class="r">132 萬</td><td class="r"><span class="pnl-pos">94578</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">86</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">9375</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">87</td><td class="c">8271</td><td>宇瞻</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">195 萬</td><td class="r"><span class="pnl-neg">-147443</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">88</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">21804</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">89</td><td class="c">6016</td><td>康和證</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">90 萬</td><td class="r"><span class="pnl-pos">222538</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">90</td><td class="c">3048</td><td>益登</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">75 萬</td><td class="r"><span class="pnl-pos">486233</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">91</td><td class="c">3095</td><td>及成</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">75 萬</td><td class="r"><span class="pnl-neg">-96109</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">92</td><td class="c">6770</td><td>力積電</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">75 萬</td><td class="r"><span class="pnl-pos">269428</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">93</td><td class="c">6026</td><td>福邦證</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">45 萬</td><td class="r"><span class="pnl-pos">1392</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">94</td><td class="c">2855</td><td>統一證</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">48146</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">95</td><td class="c">3135</td><td>凌航</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">99567</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">96</td><td class="c">3680</td><td>家登</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-22343</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">97</td><td class="c">2103</td><td>台橡</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-8679</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">98</td><td class="c">2376</td><td>技嘉</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">17736</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">99</td><td class="c">3209</td><td>全科</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">43724</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">100</td><td class="c">6020</td><td>大展證</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">17572</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">101</td><td class="c">6703</td><td>軒郁</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-9888</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">102</td><td class="c">7750</td><td>新代</td><td class="c">2026-05-11</td><td class="c">2026-05-29</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-22386</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">103</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">180 萬</td><td class="r"><span class="pnl-pos">73163</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">104</td><td class="c">6265</td><td>方土昶</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">105 萬</td><td class="r"><span class="pnl-pos">194028</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">105</td><td class="c">2451</td><td>創見</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">165 萬</td><td class="r"><span class="pnl-pos">16016</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">106</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">14258</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">107</td><td class="c">8299</td><td>群聯</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">105 萬</td><td class="r"><span class="pnl-neg">-9911</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">108</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">32096</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">109</td><td class="c">3095</td><td>及成</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">135 萬</td><td class="r"><span class="pnl-neg">-37765</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">110</td><td class="c">3209</td><td>全科</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">240 萬</td><td class="r"><span class="pnl-pos">377417</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">111</td><td class="c">2344</td><td>華邦電</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">120 萬</td><td class="r"><span class="pnl-pos">492048</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">112</td><td class="c">6021</td><td>美好證</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">21277</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">113</td><td class="c">2030</td><td>彰源</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">45 萬</td><td class="r"><span class="pnl-pos">4834</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">114</td><td class="c">2032</td><td>新鋼</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">45 萬</td><td class="r"><span class="pnl-pos">7435</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">115</td><td class="c">4931</td><td>新盛力</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">59331</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">116</td><td class="c">6005</td><td>群益證</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">64615</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">117</td><td class="c">1714</td><td>和桐</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">1914</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">118</td><td class="c">5228</td><td>鈺鎧</td><td class="c">2026-05-12</td><td class="c">2026-06-01</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">83165</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">119</td><td class="c">2451</td><td>創見</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">9440</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">120</td><td class="c">8271</td><td>宇瞻</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">90 萬</td><td class="r"><span class="pnl-pos">54103</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">121</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">150 萬</td><td class="r"><span class="pnl-pos">334548</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">122</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">203578</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">123</td><td class="c">2344</td><td>華邦電</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">170549</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">124</td><td class="c">1714</td><td>和桐</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-6169</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">125</td><td class="c">5351</td><td>鈺創</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">240 萬</td><td class="r"><span class="pnl-pos">310193</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">126</td><td class="c">3498</td><td>陽程</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">45 萬</td><td class="r"><span class="pnl-pos">106388</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">127</td><td class="c">1256</td><td>鮮活果汁-KY</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">2125</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">128</td><td class="c">2025</td><td>千興</td><td class="c">2026-05-13</td><td class="c">2026-06-02</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-5076</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">129</td><td class="c">5351</td><td>鈺創</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">150 萬</td><td class="r"><span class="pnl-neg">-7116</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">130</td><td class="c">4973</td><td>廣穎</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">120651</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">131</td><td class="c">6419</td><td>京晨科</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-50693</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">132</td><td class="c">2404</td><td>漢唐</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">15611</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">133</td><td class="c">3236</td><td>千如</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">49888</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">134</td><td class="c">3587</td><td>閎康</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-28261</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">135</td><td class="c">3653</td><td>健策</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">9944</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">136</td><td class="c">4440</td><td>宜新實業</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-9345</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">137</td><td class="c">6426</td><td>統新</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-25326</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">138</td><td class="c">8021</td><td>尖點</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-6970</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">139</td><td class="c">8926</td><td>台汽電</td><td class="c">2026-05-14</td><td class="c">2026-06-03</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">25892</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">140</td><td class="c">5289</td><td>宜鼎</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">4655</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">141</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">7032</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">142</td><td class="c">8299</td><td>群聯</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-29975</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">143</td><td class="c">2337</td><td>旺宏</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-11102</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">144</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">113040</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">145</td><td class="c">3135</td><td>凌航</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-566</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">146</td><td class="c">1597</td><td>直得</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-10981</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">147</td><td class="c">8390</td><td>金益鼎</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">31435</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">148</td><td class="c">3490</td><td>單井</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-6593</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">149</td><td class="c">4106</td><td>雃博</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">6639</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">150</td><td class="c">6151</td><td>晉倫</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">10693</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">151</td><td class="c">9958</td><td>世紀鋼</td><td class="c">2026-05-15</td><td class="c">2026-06-04</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">3035</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">152</td><td class="c">3006</td><td>晶豪科</td><td class="c">2026-05-18</td><td class="c">2026-06-05</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-26961</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">153</td><td class="c">6770</td><td>力積電</td><td class="c">2026-05-18</td><td class="c">2026-06-05</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">58946</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">154</td><td class="c">2344</td><td>華邦電</td><td class="c">2026-05-18</td><td class="c">2026-06-05</td><td class="r">150 萬</td><td class="r"><span class="pnl-pos">417908</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">155</td><td class="c">8227</td><td>巨有科技</td><td class="c">2026-05-18</td><td class="c">2026-06-05</td><td class="r">45 萬</td><td class="r"><span class="pnl-neg">-7003</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">156</td><td class="c">4711</td><td>永純</td><td class="c">2026-05-18</td><td class="c">2026-06-05</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">18390</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">157</td><td class="c">2027</td><td>大成鋼</td><td class="c">2026-05-18</td><td class="c">2026-06-05</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">15377</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">158</td><td class="c">6215</td><td>和椿</td><td class="c">2026-05-18</td><td class="c">2026-06-05</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-16711</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">159</td><td class="c">6151</td><td>晉倫</td><td class="c">2026-05-19</td><td class="c">2026-06-08</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-6904</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">160</td><td class="c">6166</td><td>凌華</td><td class="c">2026-05-19</td><td class="c">2026-06-08</td><td class="r">120 萬</td><td class="r"><span class="pnl-pos">108254</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">161</td><td class="c">2851</td><td>中再保</td><td class="c">2026-05-19</td><td class="c">2026-06-08</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">15564</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">162</td><td class="c">8087</td><td>麗升能源</td><td class="c">2026-05-19</td><td class="c">2026-06-08</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-1337</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">163</td><td class="c">2542</td><td>興富發</td><td class="c">2026-05-19</td><td class="c">2026-06-08</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-9917</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">164</td><td class="c">1533</td><td>車王電</td><td class="c">2026-05-20</td><td class="c">2026-06-09</td><td class="r">75 萬</td><td class="r"><span class="pnl-pos">79775</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">165</td><td class="c">5488</td><td>松普</td><td class="c">2026-05-20</td><td class="c">2026-06-09</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">26399</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">166</td><td class="c">6209</td><td>今國光</td><td class="c">2026-05-20</td><td class="c">2026-06-09</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">22023</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">167</td><td class="c">3028</td><td>增你強</td><td class="c">2026-05-21</td><td class="c">2026-06-10</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-18761</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">168</td><td class="c">5291</td><td>邑昇</td><td class="c">2026-05-21</td><td class="c">2026-06-10</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-14492</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">169</td><td class="c">4735</td><td>豪展</td><td class="c">2026-05-22</td><td class="c">2026-06-11</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">2712</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">170</td><td class="c">2305</td><td>全友</td><td class="c">2026-05-25</td><td class="c">2026-06-12</td><td class="r">45 萬</td><td class="r"><span class="pnl-pos">93913</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">171</td><td class="c">1591</td><td>駿吉-KY</td><td class="c">2026-05-25</td><td class="c">2026-06-12</td><td class="r">15 萬</td><td class="r"><span class="pnl-na">—</span></td><td class="c"><span class="tag-no-price">⚠ 缺價</span></td></tr>
+<tr><td class="c">172</td><td class="c">4306</td><td>炎洲</td><td class="c">2026-05-25</td><td class="c">2026-06-12</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">19703</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">173</td><td class="c">6770</td><td>力積電</td><td class="c">2026-05-26</td><td class="c">2026-06-15</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">6387</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">174</td><td class="c">3171</td><td>炎洲流通</td><td class="c">2026-05-26</td><td class="c">2026-06-15</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">1620</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">175</td><td class="c">2397</td><td>友通</td><td class="c">2026-05-26</td><td class="c">2026-06-15</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-8759</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">176</td><td class="c">3054</td><td>立萬利</td><td class="c">2026-05-26</td><td class="c">2026-06-15</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-5819</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">177</td><td class="c">4949</td><td>有成精密</td><td class="c">2026-05-26</td><td class="c">2026-06-15</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-32211</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">178</td><td class="c">6005</td><td>群益證</td><td class="c">2026-05-27</td><td class="c">2026-06-16</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">111123</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">179</td><td class="c">4711</td><td>永純</td><td class="c">2026-05-27</td><td class="c">2026-06-16</td><td class="r">45 萬</td><td class="r"><span class="pnl-neg">-2632</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">180</td><td class="c">2305</td><td>全友</td><td class="c">2026-05-27</td><td class="c">2026-06-16</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">115381</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">181</td><td class="c">2816</td><td>旺旺保</td><td class="c">2026-05-27</td><td class="c">2026-06-16</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">7196</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">182</td><td class="c">3645</td><td>達邁</td><td class="c">2026-05-27</td><td class="c">2026-06-16</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-68808</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">183</td><td class="c">8070</td><td>長華*</td><td class="c">2026-05-27</td><td class="c">2026-06-16</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">27644</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">184</td><td class="c">6016</td><td>康和證</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">120 萬</td><td class="r"><span class="pnl-pos">31588</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">185</td><td class="c">2855</td><td>統一證</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">31719</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">186</td><td class="c">5228</td><td>鈺鎧</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">15 萬</td><td class="r"><span class="pnl-pos">31728</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">187</td><td class="c">2816</td><td>旺旺保</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">60 萬</td><td class="r"><span class="pnl-pos">20532</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">188</td><td class="c">8070</td><td>長華*</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">20588</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">189</td><td class="c">2850</td><td>新產</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">30 萬</td><td class="r"><span class="pnl-neg">-1755</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">190</td><td class="c">2465</td><td>麗臺</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-8170</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">191</td><td class="c">6015</td><td>宏遠證</td><td class="c">2026-05-28</td><td class="c">2026-06-17</td><td class="r">15 萬</td><td class="r"><span class="pnl-neg">-1694</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">192</td><td class="c">6016</td><td>康和證</td><td class="c">2026-05-29</td><td class="c">2026-06-18</td><td class="r">90 萬</td><td class="r"><span class="pnl-pos">28638</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">193</td><td class="c">6770</td><td>力積電</td><td class="c">2026-05-29</td><td class="c">2026-06-18</td><td class="r">120 萬</td><td class="r"><span class="pnl-neg">-163706</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">194</td><td class="c">2855</td><td>統一證</td><td class="c">2026-05-29</td><td class="c">2026-06-18</td><td class="r">30 萬</td><td class="r"><span class="pnl-pos">37768</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">195</td><td class="c">6005</td><td>群益證</td><td class="c">2026-06-01</td><td class="c">2026-06-22</td><td class="r">16 萬</td><td class="r"><span class="pnl-pos">274</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">196</td><td class="c">5228</td><td>鈺鎧</td><td class="c">2026-06-01</td><td class="c">2026-06-22</td><td class="r">16 萬</td><td class="r"><span class="pnl-pos">9200</span></td><td class="c"><span class="tag-win">✅ 勝</span></td></tr>
+<tr><td class="c">197</td><td class="c">4106</td><td>雃博</td><td class="c">2026-06-01</td><td class="c">2026-06-22</td><td class="r">16 萬</td><td class="r"><span class="pnl-neg">-9660</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">198</td><td class="c">2376</td><td>技嘉</td><td class="c">2026-06-01</td><td class="c">2026-06-22</td><td class="r">16 萬</td><td class="r"><span class="pnl-neg">-19781</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">199</td><td class="c">6806</td><td>森崴能源</td><td class="c">2026-06-01</td><td class="c">2026-06-22</td><td class="r">16 萬</td><td class="r"><span class="pnl-neg">-84466</span></td><td class="c"><span class="tag-loss">❌ 負</span></td></tr>
+<tr><td class="c">200</td><td class="c">2408</td><td>南亞科</td><td class="c">2026-06-04</td><td class="c">2026-06-25</td><td class="r">80 萬</td><td class="r"><span class="pnl-na">—</span></td><td class="c"><span class="tag-no-price">⚠ 缺價</span></td></tr>
+</table>
+</div>
+</details>
+<div class="footer">由交易規畫引擎 v26 自動產生 &middot; 2026-06-25 02:10</div>
+<script>
+(function() {
+  document.querySelectorAll('table.sortable').forEach(function(table) {
+    var rows = Array.from(table.rows);
+    if (rows.length < 2) return;
+    var headers = Array.from(rows[0].cells);
+    var dataRows = rows.slice(1);
+    var original = dataRows.slice();
+    var state = { col: -1, dir: 0 };
+    headers.forEach(function(th, idx) {
+      if (th.dataset.type === 'none') return;
+      th.classList.add('sortable-th');
+      th.addEventListener('click', function() {
+        if (state.col !== idx) { state = { col: idx, dir: 1 }; }
+        else { state.dir = (state.dir + 1) % 3; }
+        headers.forEach(function(h) { h.classList.remove('sort-asc', 'sort-desc'); });
+        var parent = dataRows[0].parentNode;
+        if (state.dir === 0) {
+          original.forEach(function(row) { parent.appendChild(row); });
+          return;
+        }
+        th.classList.add(state.dir === 1 ? 'sort-asc' : 'sort-desc');
+        var type = th.dataset.type || 'text';
+        var sorted = dataRows.slice().sort(function(a, b) {
+          var av = (a.cells[idx] ? a.cells[idx].textContent.trim() : '');
+          var bv = (b.cells[idx] ? b.cells[idx].textContent.trim() : '');
+          var aNull = (av === '—' || av === '');
+          var bNull = (bv === '—' || bv === '');
+          if (aNull && bNull) return 0;
+          if (aNull) return 1;
+          if (bNull) return -1;
+          var cmp;
+          if (type === 'number') {
+            var an = parseFloat(av.replace(/[,+%元萬股\s]/g, '')) || 0;
+            var bn = parseFloat(bv.replace(/[,+%元萬股\s]/g, '')) || 0;
+            cmp = an - bn;
+          } else {
+            cmp = av.localeCompare(bv);
+          }
+          return state.dir === 1 ? cmp : -cmp;
+        });
+        sorted.forEach(function(row) { parent.appendChild(row); });
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
